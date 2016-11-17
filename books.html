@@ -28,16 +28,18 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Awesome Bookstore inc.</a>
+            <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="books.html">Se alle bøger <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Om os</a></li>
-              <li><a href="#">Kontakt</a></li>
+              <li class="active"><a href="books.html">Bøger<span class="sr-only">(current)</span></a></li>
+              <li><a href="ads.html">Annoncer</a></li>
+              <li><a href="aboutUs.html">Om os</a></li>
+              <li><a href="contact.html">Kontakt</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+              <li><a href="createUser.html">Opret bruger</a></li>
               <li><a href="login.html">Login</a></li>
             </ul>
           </div>
@@ -46,21 +48,25 @@
 
 
       <div class="page-header">
-        <h1>Se alle bøger</h1>
-      </div>
-      <table class="table">
+      <h1>Se alle bøger</h1>
+    </div>
+      <table class="table table-striped">
         <thead>
         <th>Titel</th>
-        <th>Undertitel</th>
-        <th>Forfatter(e)</th>
-        <th>Udgiver</th>
-        <th style="width: 75px;">Pris</th>
+        <th>Forfatter</th>
+        <th>Udgave</th>
+        <th>ISBN</th>
         </thead>
         <tbody id="booksTableBody">
 
         </tbody>
       </table>
-
+      <nav aria-label="...">
+        <ul class="pager">
+          <li><a href="#">Forrige</a></li>
+          <li><a href="#">Næste</a></li>
+        </ul>
+      </nav>
 
     </div>
   </div>
@@ -68,7 +74,7 @@
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">2016 © All rights reserved - Awesome Bookstore Inc.</p>
+    <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
   </div>
 </footer>
 
@@ -76,6 +82,11 @@
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
 <script src="js/books.page.js"></script>
+<script type="text/javascript">
+  $(document).ready(function (){
+    getbooks()
+  });
+</script>
 
 
 </body>

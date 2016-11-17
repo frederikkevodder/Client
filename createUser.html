@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
+
+
+    <meta charset="UTF-8">
+    <title>Startside</title>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav">
+                            <li><a href="books.html">Bøger</a></li>
+                            <li><a href="ads.html">Annoncer</a></li>
+                            <li><a href="aboutUs.html">Om os</a></li>
+                            <li><a href="contact.html">Kontakt</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="createUser.html">Opret bruger</a></li>
+                            <li><a href="login.html">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <form class="form-horizontal" id="loginForm">
+                <fieldset>
+
+                    <legend>Opret bruger</legend>
+
+                    <div class="form-group">
+                        <label for="inputUsername" class="col-lg-2 control-label">Brugernavn</label>
+                        <div class="col-lg-10">
+                            <input type="username" class="form-control" id="inputUsername" placeholder="Brugernavn">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-2 control-label">Kodeord</label>
+                        <div class="col-lg-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Kodeord">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPhone" class="col-lg-2 control-label">Telefonnummer</label>
+                        <div class="col-lg-10">
+                            <input type="phone" class="form-control" id="inputPhone" placeholder="Telefonnummer">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAdress" class="col-lg-2 control-label">Adresse</label>
+                        <div class="col-lg-10">
+                            <input type="adress" class="form-control" id="inputAdress" placeholder="Adresse">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Mobileypay</label>
+                        <div class="col-lg-10">
+                            <button class="btn btn-success" id="mpYesButton">Ja</button>
+                            <button class="btn btn-success" id="mpNoButton">Nej</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Kontant</label>
+                        <div class="col-lg-10">
+                            <button class="btn btn-success" id="cashYesButton">Ja</button>
+                            <button class="btn btn-success" id="cashNoButton">Nej</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Transfer</label>
+                        <div class="col-lg-10">
+                            <button class="btn btn-success" id="transferYesButton">Ja</button>
+                            <button class="btn btn-success" id="transferNoButton">Nej</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success pull-right" id="createButton">Opret bruger</button>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
+    </div>
+</footer>
+
+<script src="lib/js/jquery-3.1.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (){
+        createuser()
+    });
+</script>
+
+</body>
+</html>

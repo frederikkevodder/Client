@@ -4,10 +4,10 @@ $(document).ready(function () {
   $("#loginButton").on("click", function(e){
     e.preventDefault();
 
-    var email = $("#inputEmail").val();
+    var un = $("#inputUsername").val();
     var pw = $("#inputPassword").val();
 
-    SDK.login(email, pw, function(err, data){
+    SDK.login(un, pw, function(err, data){
 
       //On wrong credentials
       if(err) {
@@ -17,7 +17,15 @@ $(document).ready(function () {
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 
-      window.location.href = "admin.html";
+        if(data.type == 1){
+          window.location.href = "admin.html";
+
+        } else {
+          window.location.href = "user.html";
+        }
+
+
+
 
     });
 
