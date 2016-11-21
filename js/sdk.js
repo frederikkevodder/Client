@@ -9,7 +9,6 @@ var SDK = {
     $.ajax({
       url: SDK.serverURL + options.url,
       method: options.method,
-
       dataType: "json",
       data: JSON.stringify(options.data),
       xhrFields: { withCredentials: true },
@@ -29,8 +28,8 @@ var SDK = {
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createbook", data: data}, cb);
     },
-    delete: function (cb) {
-      SDK.request({method: "POST", url: "/deletebook"}, cb);
+    delete: function (data, cb) {
+      SDK.request({method: "POST", url: "/deletebook", data: data}, cb);
     }
   },
 
@@ -44,8 +43,11 @@ var SDK = {
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createuser", data: data}, cb);
     },
-    delete: function (cb) {
-      SDK.request({method: "POST", url: "/deleteuser"}, cb);
+    delete: function (data, cb) {
+      SDK.request({method: "POST", url: "/deleteuser", data: data}, cb);
+    },
+    update: function (data, cb) {
+      SDK.request({method: "POST", url: "/updateuser", data: data}, cb);
     }
 
   },
@@ -66,7 +68,7 @@ var SDK = {
   },
 
   logOut:function() {
-    SDK.Storage.remove("tokenId");
+    SDK.Storage.remove("sessionId");
     SDK.Storage.remove("userId");
     SDK.Storage.remove("user");
   },

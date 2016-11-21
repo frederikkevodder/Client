@@ -40,7 +40,7 @@ $(document).ready(function (){
                 "<td>" + book.author + "</td>" +
                 "<td>" + book.edition + "</td>" +
                 "<td>" + book.isbn + "</td>" +
-                "<td><button class=" +"deleteBookButton" +">Slet</button>"+ "</td>"+
+                "<td><button class='deleteBookButton' data-ISBN=" + book.isbn + ">Slet</button></td>"+
             "</tr>");
         });
 
@@ -119,33 +119,27 @@ $(document).ready(function (){
  * Delete a Book
  */
 
-$("#deleteBookButton").on("click", function () {
+$(".deleteBookButton").on("click", function(){
+    var ISBN = $(this);
 
-    //Delete JSON object
-    var book = {
-        title: $("#bookTitle").val(),
-        author: $("#bookAuthor").val(),
-        edition: $("#bookEdition").val(),
-        isbn: parseInt($("#bookIsbn").val()),
-    };
-
-    //Delete book
-    SDK.Book.delete(book, function (err) {
-        if (err) throw err;
-        location.reload();
+        //Delete book
+        SDK.Book.delete(ISBN, function (err, data) {
+            if (err) throw err;
+            location.reload();
+        });
 
 
-});
+
 
     /**
      * Delete a user
      */
 
     $(".deleteUserButton").on("click", function(){
-        var $button = $(this);
+        var userId = $(this);
 
             //Delete user
-            SDK.User.delete(data, function (err) {
+            SDK.User.delete(userId, function (err, data) {
                 if (err) throw err;
                 location.reload();
             });

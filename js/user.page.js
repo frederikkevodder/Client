@@ -12,16 +12,13 @@ SDK.Ad.getAll(function (err, ads) {
 
         $adsTableBody.append(
             "<tr>" +
-            "<td>" + ad.adid +"</td>" +
-            "<td>" + ad.userid +"</td>" +
-            "<td>" + ad.isbn +"</td>" +
-            "<td>" + ad.price +"</td>" +
-            "<td>" + ad.rating +"</td>" +
-            "<td>" + ad.comment +"</td>" +
-            "<td>" + ad.deleted +"</td>" +
-            "<td>" + ad.locked +"</td>" +
-            "<td><button class=" +"getAdButton" +">Vis mere</button>"+ "</td>"+
-
+            "<td>" + ad.isbn + "</td>" +
+            "<td>" + ad.bookTitle + "</td>" +
+            "<td>" + ad.bookAuthor + "</td>" +
+            "<td>" + ad.bookEdition + "</td>" +
+            "<td>" + ad.price + "</td>" +
+            "<td>" + ad.rating + "</td>" +
+            "<td><button class='getAdButton' data-adId=" + ad.adId + ">Vis mere</button></td>"+
             "</tr>");
     });
 
@@ -34,12 +31,12 @@ SDK.Ad.getAll(function (err, ads) {
 
             $adsTableBody.append(
                 "<tr>" +
-                "<td>" + ad.adid +"</td>" +
-                "<td>" + ad.userid +"</td>" +
-                "<td>" + ad.isbn +"</td>" +
-                "<td>" + ad.price +"</td>" +
-                "<td>" + ad.rating +"</td>" +
-                "<td>" + ad.comment +"</td>" +
+                "<td>" + ad.isbn + "</td>" +
+                "<td>" + ad.bookTitle + "</td>" +
+                "<td>" + ad.bookAuthor + "</td>" +
+                "<td>" + ad.bookEdition + "</td>" +
+                "<td>" + ad.price + "</td>" +
+                "<td>" + ad.rating + "</td>" +
                 "<td>" + ad.deleted +"</td>" +
                 "<td>" + ad.locked +"</td>" +
                 "</tr>");
@@ -67,7 +64,7 @@ SDK.Ad.getAll(function (err, ads) {
             };
 
 
-            //Create book
+            //Create ad
             SDK.Ad.create(ad, function (err, data) {
                 if (err) throw err;
 
@@ -77,18 +74,31 @@ SDK.Ad.getAll(function (err, ads) {
 
         });
 
-    });
         /**
          * Show ad
          */
 
+        $(".getAdButton").on("click", function(){
+            var adId = $(this);
+
+            //Show modal
+           // $('#getAdModal').modal('show');
+
+            //Delete book
+            SDK.Ad.delete(adId, function (err) {
+                if (err) throw err;
+                location.reload();
+            });
+            });
 
 
 
-    $("#logOutLink").on("click", function(){
+            $("#logOutLink").on("click", function(){
         SDK.logOut();
         window.location.href = "index.html";
     });
 });
 });
 });
+});
+

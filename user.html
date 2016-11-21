@@ -14,7 +14,7 @@
 <body>
 
 
-<!-- New Book Modal -->
+<!-- New ad Modal -->
 <div class="modal fade" id="newAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -27,7 +27,7 @@
 
                 <div class="row" >
 
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label" for="bookIsbn">ISBN</label>
                             <input class="form-control" id="bookIsbn" type="text">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label" for="newAdComment">Kommentar</label>
                             <input class="form-control" id="newAdComment" type="text">
@@ -66,6 +66,38 @@
     </div>
 </div>
 
+<!-- get ad Modal -->
+<div class="modal fade" id="getAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Vis mere</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" >
+
+                    <label>Info om bog</label>
+                    <div class="col-md-4">
+
+                    </div>
+
+                    <label>Info om sælger</label>
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success" id="reserveAdButton">Reserver bog</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
 
@@ -88,6 +120,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
                             <li><a>Hej, <span id="currentUserName"></span></a></li>
+                            <li><a href="user.html">Annoncer</a></li>
+
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="updateUser.html">Rediger oplysninger</a></li>
@@ -110,14 +144,12 @@
 
                     <table class="table table-striped">
                         <thead>
-                        <th>Annonce ID</th>
-                        <th>Bruger ID</th>
                         <th>ISBN</th>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
                         <th>Pris</th>
                         <th>Rating</th>
-                        <th>Kommentar</th>
-                        <th>Slettet</th>
-                        <th>Låst</th>
                         </thead>
                         <tbody id="adTableBody">
 
@@ -141,12 +173,12 @@
 
                     <table class="table table-striped">
                         <thead>
-                        <th>Annonce ID</th>
-                        <th>Bruger ID</th>
                         <th>ISBN</th>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
                         <th>Pris</th>
                         <th>Rating</th>
-                        <th>Kommentar</th>
                         <th>Slettet</th>
                         <th>Låst</th>
                         </thead>

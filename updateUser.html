@@ -8,102 +8,13 @@
 
 
     <meta charset="UTF-8">
-    <title>Admin panel</title>
+    <title>Rediger oplysninger</title>
 
 </head>
 <body>
 
-
-<!-- New Book Modal -->
-<div class="modal fade" id="newBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Opret ny bog</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="row" >
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="bookTitle">Title</label>
-                            <input class="form-control" id="bookTitle" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="bookSubTitle">Under titel</label>
-                            <input class="form-control" id="bookSubTitle" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="bookEdition">Udgave</label>
-                            <input class="form-control" id="bookEdition" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="bookPrice">Pris (kr)</label>
-                            <input class="form-control" id="bookPrice" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="bookPageCount">Sideantal</label>
-                            <input class="form-control" id="bookPageCount" type="text">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label" id="publishersRadio">Forlag</label>
-                            <!-- Values set by jQuery -->
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label" id="authorsCheckbox">Forfatter(e)</label>
-                            <!-- Values set by jQuery -->
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="createBookButton">Opret bog</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- New User Modal -->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">New user title</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="container">
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -124,13 +35,77 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
                             <li><a>Hej, <span id="currentUserName"></span></a></li>
+                            <li><a href="user.html">Annoncer</a></li>
+
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="updateUser.html">Rediger oplysninger</a></li>
                             <li><a id="logOutLink">Logud</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
+
+
+
+            <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <form class="form-horizontal" id="loginForm">
+                <fieldset>
+
+                    <legend>Rediger oplysninger</legend>
+
+                    <div class="form-group">
+                        <label for="updateUserUsername" class="col-lg-2 control-label">Brugernavn</label>
+                        <div class="col-lg-10">
+                            <input type="username" class="form-control" id="updateUserUsername" placeholder="Brugernavn">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="updateUserPassword" class="col-lg-2 control-label">Kodeord</label>
+                        <div class="col-lg-10">
+                            <input type="password" class="form-control" id="updateUserPassword" placeholder="Kodeord">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newUserEmail" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="newUserEmail" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="updateUserPhonenumber" class="col-lg-2 control-label">Telefonnummer</label>
+                        <div class="col-lg-10">
+                            <input type="phone" class="form-control" id="updateUserPhonenumber" placeholder="Telefonnummer">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="updateUserAddress" class="col-lg-2 control-label">Adresse</label>
+                        <div class="col-lg-10">
+                            <input type="address" class="form-control" id="updateUserAddress" placeholder="Adresse">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label"></label>
+                        <div class="col-lg-10">
+                            <input type="checkbox" name="updatemobilepay" value="updatemobilepay"> Mobilepay<br>
+                            <input type="checkbox" name="updatecash" value="updatecash"> Cash <br>
+                            <input type="checkbox" name="updatetransfer" value="updatetransfer"> Transfer <br>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-success pull-right" id="updateUserButton">Gem ændringer</button>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
 </div>
 
 <footer class="footer">
@@ -142,7 +117,8 @@
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/admin.page.js"></script>
+<script src="js/updateUser.page.js"></script>
+
 
 </body>
 </html>
