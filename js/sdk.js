@@ -28,6 +28,9 @@ var SDK = {
     },
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createbook", data: data}, cb);
+    },
+    delete: function (cb) {
+      SDK.request({method: "POST", url: "/deletebook"}, cb);
     }
   },
 
@@ -40,12 +43,22 @@ var SDK = {
     },
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createuser", data: data}, cb);
+    },
+    delete: function (cb) {
+      SDK.request({method: "POST", url: "/deleteuser"}, cb);
     }
+
   },
 
   Ad: {
     getAll: function (cb) {
       SDK.request({method: "GET", url: "/getads"}, cb);
+    },
+    getMyAds: function (cb) {
+      SDK.request({method: "GET", url: "/getmyads"}, cb);
+    },
+    create: function (data, cb) {
+      SDK.request({method: "POST", url: "/createad", data: data}, cb);
     },
     current:function () {
       return SDK.Storage.load("ad");

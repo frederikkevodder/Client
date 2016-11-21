@@ -1,4 +1,5 @@
-function loadall() {
+$(document).ready(function (){
+
 
     //Fires on page-load
     SDK.Ad.getAll(function (err, ads) {
@@ -18,8 +19,10 @@ function loadall() {
                 "<td>" + ad.comment + "</td>" +
                 "<td>" + ad.deleted + "</td>" +
                 "<td>" + ad.locked + "</td>" +
+                "<td><button class=" +"deleteAdButton" +">Slet</button>"+ "</td>"+
                 "</tr>");
         });
+
 
     });
 
@@ -37,10 +40,14 @@ function loadall() {
                 "<td>" + book.author + "</td>" +
                 "<td>" + book.edition + "</td>" +
                 "<td>" + book.isbn + "</td>" +
-                "</tr>");
+                "<td><button class=" +"deleteBookButton" +">Slet</button>"+ "</td>"+
+            "</tr>");
         });
 
-    });
+
+            });
+
+
 
 
     //Fires on page-load
@@ -52,21 +59,22 @@ function loadall() {
 
             $usersTableBody.append(
                 "<tr>" +
-                "<td>" + user.userid + "</td>" +
+                "<td>" + user.userId + "</td>" +
                 "<td>" + user.username + "</td>" +
                 "<td>" + user.password + "</td>" +
                 "<td>" + user.email + "</td>" +
                 "<td>" + user.phonenumber + "</td>" +
-                "<td>" + user.adress + "</td>" +
+                "<td>" + user.address + "</td>" +
                 "<td>" + user.mobilepay + "</td>" +
                 "<td>" + user.cash + "</td>" +
                 "<td>" + user.transfer + "</td>" +
+                "<td><button class='deleteUserButton' data-userId=" + user.userId + ">Slet</button></td>"+
                 "</tr>");
         });
 
     });
 
-}
+
 
   var currentUser = SDK.User.current();
   $("#currentUserName").text(currentUser.username);
@@ -75,7 +83,6 @@ function loadall() {
    * Add a new Book
    */
 
-  function createbook() {
 
 
       $("#addNewBookButton").on("click", function () {
@@ -91,32 +98,68 @@ function loadall() {
                   title: $("#bookTitle").val(),
                   author: $("#bookAuthor").val(),
                   edition: $("#bookEdition").val(),
-                  isbn: $("#bookIsbn").val(),
+                  isbn: parseInt($("#bookIsbn").val()),
               };
 
 
               //Create book
               SDK.Book.create(book, function (err, data) {
-                  if (err) throw err;
+                      if (err) throw err;
 
                   $("#newBookModal").modal("hide");
+                  location.reload();
               });
 
           });
 
       });
-  }
 
-  /**
-   * Add a new User
-   */
-  $("#addNewUserButton").on("click", function () {
 
-  });
+/**
+ * Delete a Book
+ */
+
+$("#deleteBookButton").on("click", function () {
+
+    //Delete JSON object
+    var book = {
+        title: $("#bookTitle").val(),
+        author: $("#bookAuthor").val(),
+        edition: $("#bookEdition").val(),
+        isbn: parseInt($("#bookIsbn").val()),
+    };
+
+    //Delete book
+    SDK.Book.delete(book, function (err) {
+        if (err) throw err;
+        location.reload();
+
+
+});
+
+    /**
+     * Delete a user
+     */
+
+    $(".deleteUserButton").on("click", function(){
+        var $button = $(this);
+
+            //Delete user
+            SDK.User.delete(data, function (err) {
+                if (err) throw err;
+                location.reload();
+            });
+
+        });
+
 
   $("#logOutLink").on("click", function(){
     SDK.logOut();
     window.location.href = "index.html";
   });
+});
+});
+
+
 
 

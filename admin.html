@@ -130,6 +130,7 @@
             <th>Forfatter</th>
             <th>Udgave</th>
             <th>ISBN</th>
+            <th>Delete</th>
             </thead>
             <tbody id="booksTableBody">
 
@@ -138,7 +139,7 @@
 
           <hr>
           <!-- Button trigger modal -->
-          <button class="btn btn-success" data-toggle="modal" data-target="#newBookModal">
+          <button class="btn btn-success" id="addNewBookButton">
             <span class="glyphicon glyphicon-plus"></span> Opret ny bog
           </button>
 
@@ -154,9 +155,15 @@
 
           <table class="table table-striped">
             <thead>
-            <th>Brugernavn</th>
-            <th>Email</th>
             <th>ID</th>
+            <th>Brugernavn</th>
+            <th>Kodeord</th>
+            <th>Email</th>
+            <th>Telefonnummer</th>
+            <th>Adresse</th>
+            <th>Mobilepay</th>
+            <th>Kontant</th>
+            <th>Transfer</th>
             </thead>
             <tbody id="usersTableBody">
 
@@ -208,10 +215,7 @@
 <script src="js/sdk.js"></script>
 <script src="js/admin.page.js"></script>
 <script type="text/javascript">
-          $(document).ready(function (){
-    loadall()
-            createbook()
-          });
+
 </script>
 
 </body>

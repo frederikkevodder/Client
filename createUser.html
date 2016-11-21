@@ -55,65 +55,50 @@
                     <legend>Opret bruger</legend>
 
                     <div class="form-group">
-                        <label for="inputUsername" class="col-lg-2 control-label">Brugernavn</label>
+                        <label for="newUserUsername" class="col-lg-2 control-label">Brugernavn</label>
                         <div class="col-lg-10">
-                            <input type="username" class="form-control" id="inputUsername" placeholder="Brugernavn">
+                            <input type="username" class="form-control" id="newUserUsername" placeholder="Brugernavn">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputPassword" class="col-lg-2 control-label">Kodeord</label>
+                        <label for="newUserPassword" class="col-lg-2 control-label">Kodeord</label>
                         <div class="col-lg-10">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Kodeord">
+                            <input type="password" class="form-control" id="newUserPassword" placeholder="Kodeord">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                        <label for="newUserEmail" class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="text" class="form-control" id="newUserEmail" placeholder="Email">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputPhone" class="col-lg-2 control-label">Telefonnummer</label>
+                        <label for="newUserPhonenumber" class="col-lg-2 control-label">Telefonnummer</label>
                         <div class="col-lg-10">
-                            <input type="phone" class="form-control" id="inputPhone" placeholder="Telefonnummer">
+                            <input type="phone" class="form-control" id="newUserPhonenumber" placeholder="Telefonnummer">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputAdress" class="col-lg-2 control-label">Adresse</label>
+                        <label for="newUserAddress" class="col-lg-2 control-label">Adresse</label>
                         <div class="col-lg-10">
-                            <input type="adress" class="form-control" id="inputAdress" placeholder="Adresse">
+                            <input type="address" class="form-control" id="newUserAddress" placeholder="Adresse">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Mobileypay</label>
+                        <label class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <button class="btn btn-success" id="mpYesButton">Ja</button>
-                            <button class="btn btn-success" id="mpNoButton">Nej</button>
+                            <input type="checkbox" name="mobilepay" value="mobilepay"> Mobilepay<br>
+                            <input type="checkbox" name="cash" value="cash"> Cash <br>
+                            <input type="checkbox" name="transfer" value="transfer"> Transfer <br>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Kontant</label>
-                        <div class="col-lg-10">
-                            <button class="btn btn-success" id="cashYesButton">Ja</button>
-                            <button class="btn btn-success" id="cashNoButton">Nej</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Transfer</label>
-                        <div class="col-lg-10">
-                            <button class="btn btn-success" id="transferYesButton">Ja</button>
-                            <button class="btn btn-success" id="transferNoButton">Nej</button>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-success pull-right" id="createButton">Opret bruger</button>
+                    <button type="button" class="btn btn-success pull-right" id="addNewUserButton">Opret bruger</button>
 
                 </fieldset>
             </form>
@@ -131,11 +116,8 @@
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script type="text/javascript">
-    $(document).ready(function (){
-        createuser()
-    });
-</script>
+<script src="js/createUser.page.js"></script>
+
 
 </body>
 </html>
