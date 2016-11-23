@@ -7,10 +7,10 @@ $(document).ready(function () {
 SDK.Ad.getAll(function (err, ads) {
     if (err) throw err;
 
-    var $adsTableBody = $("#adTableBody");
+    var $adTableBody = $("#adTableBody");
     ads.forEach(function (ad) {
 
-        $adsTableBody.append(
+        $adTableBody.append(
             "<tr>" +
             "<td>" + ad.isbn + "</td>" +
             "<td>" + ad.bookTitle + "</td>" +
@@ -26,18 +26,16 @@ SDK.Ad.getAll(function (err, ads) {
     SDK.Ad.getMyAds(function (err, ads) {
         if (err) throw err;
 
-        var $adsTableBody = $("#myAdsTableBody");
+        var $myAdsTableBody = $("#myAdsTableBody");
         ads.forEach(function (ad) {
 
-            $adsTableBody.append(
+            $myAdsTableBody.append(
                 "<tr>" +
+                "<td>" + ad.adId + "</td>" +
                 "<td>" + ad.isbn + "</td>" +
-                "<td>" + ad.bookTitle + "</td>" +
-                "<td>" + ad.bookAuthor + "</td>" +
-                "<td>" + ad.bookEdition + "</td>" +
                 "<td>" + ad.price + "</td>" +
                 "<td>" + ad.rating + "</td>" +
-                "<td>" + ad.deleted +"</td>" +
+                "<td>" + ad.comment + "</td>" +
                 "<td>" + ad.locked +"</td>" +
                 "</tr>");
         });

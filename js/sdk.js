@@ -62,6 +62,9 @@ var SDK = {
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createad", data: data}, cb);
     },
+    reserve: function (data, cb) {
+      SDK.request({method: "POST", url: "/reservead", data: data}, cb);
+    },
     current:function () {
       return SDK.Storage.load("ad");
     }

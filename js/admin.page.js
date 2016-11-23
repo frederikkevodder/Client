@@ -75,15 +75,13 @@ $(document).ready(function (){
     });
 
 
-
   var currentUser = SDK.User.current();
   $("#currentUserName").text(currentUser.username);
+
 
   /**
    * Add a new Book
    */
-
-
 
       $("#addNewBookButton").on("click", function () {
 
@@ -119,17 +117,17 @@ $(document).ready(function (){
  * Delete a Book
  */
 
-$(".deleteBookButton").on("click", function(){
-    var ISBN = $(this);
+    $(".deleteBookButton").on("click", function(){
+        var ISBN = $(this);
 
-        //Delete book
-        SDK.Book.delete(ISBN, function (err, data) {
-            if (err) throw err;
-            location.reload();
-        });
+            //Delete book
+            SDK.Book.delete(ISBN, function (err, data) {
+                if (err) throw err;
+                location.reload();
+            });
 
 
-
+    });
 
     /**
      * Delete a user
@@ -151,7 +149,7 @@ $(".deleteBookButton").on("click", function(){
     SDK.logOut();
     window.location.href = "index.html";
   });
-});
+
 });
 
 
