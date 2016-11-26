@@ -20,7 +20,7 @@ $("#updateUserButton").on("click", function () {
 
 
     //Create JSON object
-    var user = {
+    var updatedUser = {
         username: $("#updateUserUsername").val(),
         password: $("#updateUserPassword").val(),
         email: $("#updateUserEmail").val(),
@@ -35,7 +35,7 @@ $("#updateUserButton").on("click", function () {
 
 
 //Update user
-    SDK.User.update(user, function (err, data) {
+    SDK.User.update(updatedUser, function (err, data) {
         if (err) throw err;
 
         window.location.href = "user.html";

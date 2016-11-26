@@ -65,6 +65,12 @@ var SDK = {
     reserve: function (data, cb) {
       SDK.request({method: "POST", url: "/reservead", data: data}, cb);
     },
+    myReservations: function (cb) {
+      SDK.request({method: "GET", url: "/getmyreservations"}, cb);
+    },
+    deleteReservation: function (data, cb) {
+      SDK.request({method: "POST", url: "/deletereservation", data: data}, cb);
+    },
     current:function () {
       return SDK.Storage.load("ad");
     }

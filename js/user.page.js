@@ -18,9 +18,30 @@ SDK.Ad.getAll(function (err, ads) {
             "<td>" + ad.bookEdition + "</td>" +
             "<td>" + ad.price + "</td>" +
             "<td>" + ad.rating + "</td>" +
-            "<td><button class='getAdButton' data-adId=" + ad.adId + ">Vis mere</button></td>"+
+            "<td><button class='reserveAdButton' data-adId=" + ad.adId + ">Reserver</button></td>"+
             "</tr>");
     });
+
+    /**
+     * reserve ad
+     */
+
+    $(".reserveAdButton").on("click", function(){
+        var $reserveAdButton = $(this);
+
+
+        var adId = {
+            id : $reserveAdButton.data("adid")
+        };
+
+        //Reserve book
+        SDK.Ad.reserve(adId, function (err, data) {
+            if (err) throw err;
+            location.reload();
+
+        });
+    });
+});
 
     //Mine annoncer
     SDK.Ad.getMyAds(function (err, ads) {
@@ -38,6 +59,7 @@ SDK.Ad.getAll(function (err, ads) {
                 "<td>" + ad.comment + "</td>" +
                 "<td>" + ad.locked +"</td>" +
                 "</tr>");
+        });
         });
 
 
@@ -71,21 +93,46 @@ SDK.Ad.getAll(function (err, ads) {
             });
 
         });
+        });
 
-        /**
-         * Show ad
-         */
 
-        $(".getAdButton").on("click", function(){
-            var adId = $(this);
+        //Mine reservationer
+        SDK.Ad.myReservations(function (err, ads) {
+            if (err) throw err;
 
-            //Show modal
-           // $('#getAdModal').modal('show');
+            var $myReservationsTableBody = $("#myReservationsTableBody");
+            ads.forEach(function (ad) {
 
-            //Delete book
-            SDK.Ad.delete(adId, function (err) {
-                if (err) throw err;
-                location.reload();
+                $myReservationsTableBody.append(
+                    "<tr>" +
+                    "<td>" + ad.adId + "</td>" +
+                    "<td>" + ad.timestamp + "</td>" +
+                    "<td>" + ad.bookIsbn + "</td>" +
+                    "<td>" + ad.userUsername + "</td>" +
+                    "<td>" + ad.userPhonenumber + "</td>" +
+                    "<td><button class='deleteReservationButton' data-adId=" + ad.adId + ">Slet reservation</button></td>"+
+
+                    "</tr>");
+            });
+
+            /**
+             * delete reservation
+             */
+
+            $(".deleteReservationButton").on("click", function(){
+                var deleteReservationButton = $(this);
+
+
+                var adId = {
+                    id : deleteReservationButton.data("adid")
+                };
+
+                //Delete book
+                SDK.Ad.deleteReservation(adId, function (err, data) {
+                    if (err) throw err;
+                    location.reload();
+
+                });
             });
             });
 
@@ -95,8 +142,5 @@ SDK.Ad.getAll(function (err, ads) {
         SDK.logOut();
         window.location.href = "index.html";
     });
-});
-});
-});
 });
 

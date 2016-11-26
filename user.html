@@ -66,38 +66,6 @@
     </div>
 </div>
 
-<!-- get ad Modal -->
-<div class="modal fade" id="getAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Vis mere</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="row" >
-
-                    <label>Info om bog</label>
-                    <div class="col-md-4">
-
-                    </div>
-
-                    <label>Info om sælger</label>
-                    <div class="col-md-4">
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="reserveAdButton">Reserver bog</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container">
 
@@ -156,7 +124,6 @@
                         </tbody>
                     </table>
 
-                    <hr>
 
 
                 </div>
@@ -193,6 +160,28 @@
 
                 </div>
             </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Mine reservationer</h3>
+        </div>
+        <div class="panel-body">
+
+            <table class="table table-striped">
+                <thead>
+                <th>Annonce ID</th>
+                <th>Tidspunkt</th>
+                <th>ISBN</th>
+                <th>Brugernavn</th>
+                <th>Telefonnummer</th>
+                </thead>
+                <tbody id="myReservationsTableBody">
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
 
         </div>
     </div>

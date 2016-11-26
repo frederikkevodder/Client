@@ -1,4 +1,4 @@
-$(document).ready(function (){
+$(document).ready(function () {
 
 
     //Fires on page-load
@@ -19,7 +19,6 @@ $(document).ready(function (){
                 "<td>" + ad.comment + "</td>" +
                 "<td>" + ad.deleted + "</td>" +
                 "<td>" + ad.locked + "</td>" +
-                "<td><button class=" +"deleteAdButton" +">Slet</button>"+ "</td>"+
                 "</tr>");
         });
 
@@ -40,14 +39,31 @@ $(document).ready(function (){
                 "<td>" + book.author + "</td>" +
                 "<td>" + book.edition + "</td>" +
                 "<td>" + book.isbn + "</td>" +
-                "<td><button class='deleteBookButton' data-ISBN=" + book.isbn + ">Slet</button></td>"+
-            "</tr>");
+                "<td><button class='deleteBookButton' data-isbn=" + book.isbn + ">Slet</button></td>" +
+                "</tr>");
         });
 
+        /**
+         * Delete a Book
+         */
+        $(".deleteBookButton").on("click", function () {
+            var $deleteBookButton = $(this);
 
+            var isbn = {
+                isbn :$deleteBookButton.data("isbn")
+            };
+            //Delete book
+
+            SDK.Book.delete(isbn, function (err, data) {
+                if (err) throw err;
+                location.reload();
             });
 
 
+        });
+
+
+    });
 
 
     //Fires on page-load
@@ -68,87 +84,54 @@ $(document).ready(function (){
                 "<td>" + user.mobilepay + "</td>" +
                 "<td>" + user.cash + "</td>" +
                 "<td>" + user.transfer + "</td>" +
-                "<td><button class='deleteUserButton' data-userId=" + user.userId + ">Slet</button></td>"+
                 "</tr>");
         });
 
     });
 
 
-  var currentUser = SDK.User.current();
-  $("#currentUserName").text(currentUser.username);
+    var currentUser = SDK.User.current();
+    $("#currentUserName").text(currentUser.username);
 
-
-  /**
-   * Add a new Book
-   */
-
-      $("#addNewBookButton").on("click", function () {
-
-          //Show modal
-          $('#newBookModal').modal('show');
-
-
-          $("#createBookButton").on("click", function () {
-
-              //Create JSON object
-              var book = {
-                  title: $("#bookTitle").val(),
-                  author: $("#bookAuthor").val(),
-                  edition: $("#bookEdition").val(),
-                  isbn: parseInt($("#bookIsbn").val()),
-              };
-
-
-              //Create book
-              SDK.Book.create(book, function (err, data) {
-                      if (err) throw err;
-
-                  $("#newBookModal").modal("hide");
-                  location.reload();
-              });
-
-          });
-
-      });
-
-
-/**
- * Delete a Book
- */
-
-    $(".deleteBookButton").on("click", function(){
-        var ISBN = $(this);
-
-            //Delete book
-            SDK.Book.delete(ISBN, function (err, data) {
-                if (err) throw err;
-                location.reload();
-            });
-
-
-    });
 
     /**
-     * Delete a user
+     * Add a new Book
      */
 
-    $(".deleteUserButton").on("click", function(){
-        var userId = $(this);
+    $("#addNewBookButton").on("click", function () {
 
-            //Delete user
-            SDK.User.delete(userId, function (err, data) {
+        //Show modal
+        $('#newBookModal').modal('show');
+
+
+        $("#createBookButton").on("click", function () {
+
+            //Create JSON object
+            var book = {
+                title: $("#bookTitle").val(),
+                author: $("#bookAuthor").val(),
+                edition: $("#bookEdition").val(),
+                isbn: parseInt($("#bookIsbn").val()),
+            };
+
+
+            //Create book
+            SDK.Book.create(book, function (err, data) {
                 if (err) throw err;
+
+                $("#newBookModal").modal("hide");
                 location.reload();
             });
 
         });
 
+    });
 
-  $("#logOutLink").on("click", function(){
-    SDK.logOut();
-    window.location.href = "index.html";
-  });
+
+    $("#logOutLink").on("click", function () {
+        SDK.logOut();
+        window.location.href = "index.html";
+    });
 
 });
 
