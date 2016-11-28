@@ -16,8 +16,6 @@ $(document).ready(function () {
                 "<td>" + ad.bookEdition + "</td>" +
                 "<td>" + ad.price + "</td>" +
                 "<td>" + ad.rating + "</td>" +
-                "<td>" + ad.comment + "</td>" +
-                "<td>" + ad.deleted + "</td>" +
                 "<td>" + ad.locked + "</td>" +
                 "</tr>");
         });
