@@ -16,7 +16,6 @@ function getads(){
                 "<td>" + ad.bookEdition + "</td>" +
                 "<td>" + ad.price + "</td>" +
                 "<td>" + ad.rating + "</td>" +
-                "<td>" + ad.locked + "</td>" +
                 "</tr>");
         });
 

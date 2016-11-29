@@ -3,7 +3,7 @@
 <head>
 
     <link rel="stylesheet" href="lib/css/bootstrap.css">
-    <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.simplex.min.css">
     <link rel="stylesheet" href="css/sticky-footer.css">
 
 
@@ -60,7 +60,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="createAdButton">Opret annonce</button>
+                <button type="button" class="btn btn-primary" id="createAdButton">Opret annonce</button>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -87,7 +87,6 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
-                            <li><a>Hej, <span id="currentUserName"></span></a></li>
                             <li><a href="user.html">Annoncer</a></li>
 
                         </ul>
@@ -145,7 +144,7 @@
                         <th>Pris</th>
                         <th>Rating</th>
                         <th>Kommentar</th>
-                        <th>Låst</th>
+                        <th>Reserveret</th>
                         </thead>
                         <tbody id="myAdsTableBody">
 
@@ -154,7 +153,7 @@
 
                     <hr>
                     <!-- Button trigger modal -->
-                    <button class="btn btn-success" id="addNewAdButton">
+                    <button class="btn btn-primary" id="addNewAdButton">
                         <span class="glyphicon glyphicon-plus"></span> Opret ny annonce
                     </button>
 

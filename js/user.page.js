@@ -50,6 +50,14 @@ SDK.Ad.getAll(function (err, ads) {
         var $myAdsTableBody = $("#myAdsTableBody");
         ads.forEach(function (ad) {
 
+            function locked(){
+                if(ad.locked==1){
+                    return "Ja"
+                } else{
+                    return "Nej"
+                }
+            }
+
             $myAdsTableBody.append(
                 "<tr>" +
                 "<td>" + ad.adId + "</td>" +
@@ -57,8 +65,26 @@ SDK.Ad.getAll(function (err, ads) {
                 "<td>" + ad.price + "</td>" +
                 "<td>" + ad.rating + "</td>" +
                 "<td>" + ad.comment + "</td>" +
-                "<td>" + ad.locked +"</td>" +
+                "<td>" + locked() +"</td>" +
+                "<td><button class='unlockAdButton' data-adId=" + ad.adId + ">Lås op</button></td>"+
+
                 "</tr>");
+        });
+
+        $(".unlockAdButton").on("click", function(){
+            var unlockAdButton = $(this);
+
+
+            var adId = {
+                id : unlockAdButton.data("adid")
+            };
+
+            //Delete book
+            SDK.Ad.unlockAd(adId, function (err, data) {
+                if (err) throw err;
+                location.reload();
+
+            });
         });
         });
 

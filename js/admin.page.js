@@ -8,6 +8,14 @@ $(document).ready(function () {
         var $adsTableBody = $("#adsTableBody");
         ads.forEach(function (ad) {
 
+            function locked(){
+                if(ad.locked==1){
+                    return "Ja"
+                } else{
+                    return "Nej"
+                }
+            }
+
             $adsTableBody.append(
                 "<tr>" +
                 "<td>" + ad.isbn + "</td>" +
@@ -16,7 +24,7 @@ $(document).ready(function () {
                 "<td>" + ad.bookEdition + "</td>" +
                 "<td>" + ad.price + "</td>" +
                 "<td>" + ad.rating + "</td>" +
-                "<td>" + ad.locked + "</td>" +
+                "<td>" + locked() + "</td>" +
                 "</tr>");
         });
 
@@ -69,7 +77,29 @@ $(document).ready(function () {
         if (err) throw err;
 
         var $usersTableBody = $("#usersTableBody");
+
         users.forEach(function (user) {
+            function mobilepay(){
+                if(user.mobilepay==1){
+                    return "Ja"
+                } else{
+                    return "Nej"
+                }
+            }
+            function cash(){
+                if(user.cash==1){
+                    return "Ja"
+                } else{
+                    return "Nej"
+                }
+            }
+            function transfer(){
+                if(user.transfer==1){
+                    return "Ja"
+                } else{
+                    return "Nej"
+                }
+            }
 
             $usersTableBody.append(
                 "<tr>" +
@@ -79,10 +109,12 @@ $(document).ready(function () {
                 "<td>" + user.email + "</td>" +
                 "<td>" + user.phonenumber + "</td>" +
                 "<td>" + user.address + "</td>" +
-                "<td>" + user.mobilepay + "</td>" +
-                "<td>" + user.cash + "</td>" +
-                "<td>" + user.transfer + "</td>" +
+                "<td>" + mobilepay() + "</td>" +
+                "<td>" + cash() + "</td>" +
+                "<td>" + transfer() + "</td>" +
                 "</tr>");
+
+
         });
 
     });
