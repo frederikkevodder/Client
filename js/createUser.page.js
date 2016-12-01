@@ -37,9 +37,16 @@ $("#addNewUserButton").on("click", function () {
 //Create user
     SDK.User.create(user, function (err, data) {
 
-        if (err) throw err;
-        console.log(user.username);
+        if (err) {
+            window.alert("Noget gik galt, prøv igen.")
 
-        window.location.href = "user.html";
+            throw err
+            location.reload()
+        } else{
+            window.location.href = "user.html";
+
+        }
+
+
     });
 });

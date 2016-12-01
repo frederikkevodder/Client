@@ -53,22 +53,21 @@ $(document).ready(function () {
          * Delete a Book
          */
         $(".deleteBookButton").on("click", function () {
-            var $deleteBookButton = $(this);
+                if (confirm("Er du sikker på, at du vil slette denne bog?") == true) {
 
-            var isbn = {
-                isbn :$deleteBookButton.data("isbn")
-            };
-            //Delete book
+                    var $deleteBookButton = $(this);
 
-            SDK.Book.delete(isbn, function (err, data) {
-                if (err) throw err;
-                location.reload();
-            });
+                    var isbn = {
+                        isbn :$deleteBookButton.data("isbn")
+                    };
 
+                    SDK.Book.delete(isbn, function (err, data) {
+                        if (err) throw err;
+                        location.reload();
+                    });
+                } 
 
-        });
-
-
+    });
     });
 
 
@@ -112,8 +111,29 @@ $(document).ready(function () {
                 "<td>" + mobilepay() + "</td>" +
                 "<td>" + cash() + "</td>" +
                 "<td>" + transfer() + "</td>" +
+                "<td><button class='deleteUserButton' data-userId=" + user.userId + ">Slet</button></td>" +
+
                 "</tr>");
 
+
+        });
+
+        $(".deleteUserButton").on("click", function () {
+
+            if (confirm("Er du sikker på, at du vil slette denne bruger?") == true) {
+
+                var $deleteUserButton = $(this);
+
+            var userId = {
+                id :$deleteUserButton.data("userid")
+            };
+            //Delete user
+
+            SDK.User.delete(userId, function (err, data) {
+                if (err) throw err;
+                location.reload();
+            });
+            }
 
         });
 
@@ -147,10 +167,14 @@ $(document).ready(function () {
 
             //Create book
             SDK.Book.create(book, function (err, data) {
-                if (err) throw err;
 
-                $("#newBookModal").modal("hide");
-                location.reload();
+                if (err) {
+                    window.alert("Noget gik galt, prøv igen.")
+                    throw err
+                } else {
+                    $("#newBookModal").modal("hide");
+                    location.reload();
+                }
             });
 
         });

@@ -27,8 +27,8 @@ SDK.Ad.getAll(function (err, ads) {
      */
 
     $(".reserveAdButton").on("click", function(){
+        if (confirm("Er du sikker på, at du vil reservere denne bog?") == true) {
         var $reserveAdButton = $(this);
-
 
         var adId = {
             id : $reserveAdButton.data("adid")
@@ -40,6 +40,8 @@ SDK.Ad.getAll(function (err, ads) {
             location.reload();
 
         });
+        }
+
     });
 });
 
@@ -72,19 +74,23 @@ SDK.Ad.getAll(function (err, ads) {
         });
 
         $(".unlockAdButton").on("click", function(){
-            var unlockAdButton = $(this);
+
+            if (confirm("Er du sikker på, at du vil slette denne bog?") == true) {
+
+                var unlockAdButton = $(this);
 
 
-            var adId = {
-                id : unlockAdButton.data("adid")
-            };
+                var adId = {
+                    id: unlockAdButton.data("adid")
+                };
 
-            //Delete book
-            SDK.Ad.unlockAd(adId, function (err, data) {
-                if (err) throw err;
-                location.reload();
+                //Delete book
+                SDK.Ad.unlockAd(adId, function (err, data) {
+                    if (err) throw err;
+                    location.reload();
 
-            });
+                });
+            }
         });
         });
 
@@ -112,10 +118,14 @@ SDK.Ad.getAll(function (err, ads) {
 
             //Create ad
             SDK.Ad.create(ad, function (err, data) {
-                if (err) throw err;
 
-                $("#newAdModal").modal("hide");
-                location.reload();
+                if (err) {
+                    window.alert("Noget gik galt, prøv igen.")
+                    throw err
+                } else {
+                    $("#newAdModal").modal("hide");
+                    location.reload();
+                }
             });
 
         });
@@ -146,19 +156,22 @@ SDK.Ad.getAll(function (err, ads) {
              */
 
             $(".deleteReservationButton").on("click", function(){
-                var deleteReservationButton = $(this);
+                if (confirm("Er du sikker på, at du vil slette din reservervation?") == true) {
+
+                    var deleteReservationButton = $(this);
 
 
-                var adId = {
-                    id : deleteReservationButton.data("adid")
-                };
+                    var adId = {
+                        id: deleteReservationButton.data("adid")
+                    };
 
-                //Delete book
-                SDK.Ad.deleteReservation(adId, function (err, data) {
-                    if (err) throw err;
-                    location.reload();
+                    //Delete book
+                    SDK.Ad.deleteReservation(adId, function (err, data) {
+                        if (err) throw err;
+                        location.reload();
 
-                });
+                    });
+                }
             });
             });
 

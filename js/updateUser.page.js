@@ -35,9 +35,15 @@ $(document).ready(function () {
 
 //Update user
         SDK.User.update(updatedUser, function (err, data) {
-            if (err) throw err;
+            if (err) {
+                window.alert("Noget gik galt, prøv igen.")
 
-            window.location.href = "user.html";
+                throw err
+                location.reload()
+            } else{
+                window.location.href = "user.html";
+
+            }
         });
     });
 });

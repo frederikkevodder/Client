@@ -20,7 +20,7 @@ body {
     margin: 20px 0;
 }
 
-.deleteBookButton, .reserveAdButton, .deleteReservationButton, .unlockAdButton{
+.deleteBookButton, .reserveAdButton, .deleteReservationButton, .unlockAdButton, .deleteUserButton{
     color: white;
     background-color: #d9230f;
     border-color: rgb(169, 27, 12);
