@@ -69,13 +69,14 @@ SDK.Ad.getAll(function (err, ads) {
                 "<td>" + ad.comment + "</td>" +
                 "<td>" + locked() +"</td>" +
                 "<td><button class='unlockAdButton' data-adId=" + ad.adId + ">Lås op</button></td>"+
+                "<td><button class='deleteAdButton' data-adId=" + ad.adId + ">Slet</button></td>"+
 
                 "</tr>");
         });
 
         $(".unlockAdButton").on("click", function(){
 
-            if (confirm("Er du sikker på, at du vil slette denne bog?") == true) {
+            if (confirm("Er du sikker på, at du vil gøre annoncen aktiv igen?") == true) {
 
                 var unlockAdButton = $(this);
 
@@ -91,6 +92,25 @@ SDK.Ad.getAll(function (err, ads) {
 
                 });
             }
+        });
+
+        $(".deleteAdButton").on("click", function () {
+
+            if (confirm("Er du sikker på, at du vil slette denne annonce?") == true) {
+
+                var $deleteAdButton = $(this);
+
+                var adId = {
+                    id :$deleteAdButton.data("adid")
+                };
+                //Delete user
+
+                SDK.Ad.deleteAd(adId, function (err, data) {
+                    if (err) throw err;
+                    location.reload();
+                });
+            }
+
         });
         });
 
@@ -146,7 +166,7 @@ SDK.Ad.getAll(function (err, ads) {
                     "<td>" + ad.bookIsbn + "</td>" +
                     "<td>" + ad.userUsername + "</td>" +
                     "<td>" + ad.userPhonenumber + "</td>" +
-                    "<td><button class='deleteReservationButton' data-adId=" + ad.adId + ">Slet reservation</button></td>"+
+                    "<td><button class='deleteReservationButton' data-adId=" + ad.adId + ">Fjern reservation</button></td>"+
 
                     "</tr>");
             });
@@ -156,7 +176,7 @@ SDK.Ad.getAll(function (err, ads) {
              */
 
             $(".deleteReservationButton").on("click", function(){
-                if (confirm("Er du sikker på, at du vil slette din reservervation?") == true) {
+                if (confirm("Er du sikker på, at du vil fjerne din reservervation?") == true) {
 
                     var deleteReservationButton = $(this);
 

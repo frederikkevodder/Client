@@ -71,6 +71,9 @@ var SDK = {
     deleteReservation: function (data, cb) {
       SDK.request({method: "POST", url: "/deletereservation", data: data}, cb);
     },
+    deleteAd: function (data, cb) {
+      SDK.request({method: "POST", url: "/deletead", data: data}, cb);
+    },
     unlockAd: function (data, cb) {
       SDK.request({method: "POST", url: "/unlockad", data: data}, cb);
     },
