@@ -5,7 +5,9 @@ var SDK = {
   request: function (options, cb) {
 
 
-    //Perform XHR
+    /**
+     *     Her sker forbindelsen til serveren
+     */
     $.ajax({
       url: SDK.serverURL + options.url,
       method: options.method,
@@ -20,6 +22,7 @@ var SDK = {
       }
     });
   },
+
 
   Book: {
     getAll: function (cb) {
@@ -36,9 +39,6 @@ var SDK = {
   User: {
     getAll: function (cb) {
       SDK.request({method: "GET", url: "/getusers"}, cb);
-    },
-    current:function () {
-      return SDK.Storage.load("user");
     },
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createuser", data: data}, cb);
@@ -77,9 +77,6 @@ var SDK = {
     unlockAd: function (data, cb) {
       SDK.request({method: "POST", url: "/unlockad", data: data}, cb);
     },
-    current:function () {
-      return SDK.Storage.load("ad");
-    }
   },
 
   logOut:function() {
@@ -101,7 +98,7 @@ var SDK = {
       //On login-error
       if (err) return cb(err);
 
-      SDK.Storage.persist("tokenId", data.id);
+      SDK.Storage.persist("sessionId", data.sessionId);
       SDK.Storage.persist("userId", data.userId);
       SDK.Storage.persist("user", data.user);
 

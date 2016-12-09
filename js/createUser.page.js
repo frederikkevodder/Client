@@ -43,7 +43,7 @@ $("#addNewUserButton").on("click", function () {
             throw err
             location.reload()
         } else{
-            window.location.href = "user.html";
+            window.location.href = "login.html";
 
         }
 

@@ -11,6 +11,9 @@ $(document).ready(function () {
 
       //On wrong credentials
       if(err) {
+        window.alert("Noget gik galt, prøv igen.")
+        location.reload()
+
         return $("#loginForm").find(".form-group").addClass("has-error");
       }
 
@@ -23,9 +26,6 @@ $(document).ready(function () {
         } else {
           window.location.href = "user.html";
         }
-
-
-
 
     });
 
