@@ -1,34 +1,53 @@
+/**
+ * Metode for login.
+ */
 
 $(document).ready(function () {
 
-  $("#loginButton").on("click", function(e){
-    e.preventDefault();
+    /**
+     * Metode der kører, når der trykkes på kanppen "login".
+     */
+    $("#loginButton").on("click", function (e) {
+        e.preventDefault();
 
-    var un = $("#inputUsername").val();
-    var pw = $("#inputPassword").val();
+        /**
+         * Opretter Json objekt for brugernavn og kodeord.
+         * @type {any}
+         */
+        var un = $("#inputUsername").val();
+        var pw = $("#inputPassword").val();
 
-    SDK.login(un, pw, function(err, data){
+        SDK.login(un, pw, function (err, data) {
 
-      //On wrong credentials
-      if(err) {
-        window.alert("Noget gik galt, prøv igen.")
-        location.reload()
+            /**
+             * Ved fejl
+             */
+            if (err) {
+                window.alert("Noget gik galt, prøv igen.")
+                location.reload()
 
-        return $("#loginForm").find(".form-group").addClass("has-error");
-      }
+                return $("#loginForm").find(".form-group").addClass("has-error");
+            }
 
-      //Login OK!
-      $("#loginForm").find(".form-group").addClass("has-success");
+            /**
+             * Ved succes
+             */
+            $("#loginForm").find(".form-group").addClass("has-success");
 
-        if(data.type == 1){
-          window.location.href = "admin.html";
+            /**
+             * Logger admin ind, som har type=1, sendes vedkommende over til den admin panel.
+             * Logger en bruger ind, som default oprettes med type=0, og desuden ikke kan være andet,
+             * sendes vedkommende til user panel.
+             */
+            if (data.type == 1) {
+                window.location.href = "admin.html";
 
-        } else {
-          window.location.href = "user.html";
-        }
+            } else {
+                window.location.href = "user.html";
+            }
+
+        });
 
     });
-
-  });
 
 });

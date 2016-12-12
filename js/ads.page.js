@@ -1,7 +1,8 @@
 /**
  * Created by frederikkevodder on 17/11/2016.
+ * Her hentes alle annoncer og vises i den oprettede HTML tabel, når DOM er klar.
  */
-function getads(){
+
     SDK.Ad.getAll(function (err, ads) {
         if (err) throw err;
 
@@ -20,4 +21,4 @@ function getads(){
         });
 
     });
-}
+

@@ -2,209 +2,192 @@
 <html lang="en">
 <head>
 
-  <link rel="stylesheet" href="lib/css/bootstrap.css">
-  <link rel="stylesheet" href="lib/css/bootstrap.simplex.min.css">
-  <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.simplex.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
 
 
-  <meta charset="UTF-8">
-  <title>Admin panel</title>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
 
 </head>
 <body>
 
 
-<!-- New Book Modal -->
+<!-- Her oprettes en modal for funktioen "opret bog" -->
 <div class="modal fade" id="newBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Opret ny bog</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Opret ny bog</h4>
+            </div>
+            <div class="modal-body">
 
-        <div class="row" >
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="bookTitle">Titel</label>
-              <input class="form-control" id="bookTitle" type="text">
-            </div>
-          </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="bookTitle">Titel</label>
+                            <input class="form-control" id="bookTitle" type="text">
+                        </div>
+                    </div>
 
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="bookAuthor">Forfatter</label>
-              <input class="form-control" id="bookAuthor" type="text">
-            </div>
-          </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="bookAuthor">Forfatter</label>
+                            <input class="form-control" id="bookAuthor" type="text">
+                        </div>
+                    </div>
 
-          <div class="col-md-4">
-            <div class="form-group">
-              <label class="control-label" for="bookEdition">Udgave</label>
-              <input class="form-control" id="bookEdition" type="text">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="bookEdition">Udgave</label>
+                            <input class="form-control" id="bookEdition" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label" for="bookIsbn">ISBN</label>
+                            <input class="form-control" id="bookIsbn" type="text">
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
-          <div class="col-md-8">
-            <div class="form-group">
-              <label class="control-label" for="bookIsbn">ISBN</label>
-              <input class="form-control" id="bookIsbn" type="text">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-primary" id="createBookButton">Opret bog</button>
             </div>
-          </div>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-        <button type="button" class="btn btn-primary" id="createBookButton">Opret bog</button>
-      </div>
     </div>
-  </div>
 </div>
-
-<!-- New User Modal -->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">New user title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <div class="container">
 
-  <div class="row">
-    <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-12">
 
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
-          </div>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
+                    </div>
 
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a id="logOutLink">Logud</a></li>
-            </ul>
-          </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav">
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a id="logOutLink">Logud</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="page-header">
+                <h1>Admin panel</h1>
+            </div>
+
+            <!-- Her oprettes tabellen alle bøgerne skal vises i -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Bøger</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
+                        <th>ISBN</th>
+                        <th>Slet</th>
+                        </thead>
+                        <tbody id="booksTableBody">
+
+                        </tbody>
+                    </table>
+
+                    <hr>
+                    <button class="btn btn-primary" id="addNewBookButton">
+                        <span class="glyphicon glyphicon-plus"></span> Opret ny bog
+                    </button>
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Brugere</h3>
+                </div>
+                <!-- Her oprettes tabellen alle brugerne skal vises i -->
+
+                <div class="panel-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>ID</th>
+                        <th>Brugernavn</th>
+                        <th>Kodeord</th>
+                        <th>Email</th>
+                        <th>Telefonnummer</th>
+                        <th>Adresse</th>
+                        <th>Mobilepay</th>
+                        <th>Kontant</th>
+                        <th>Bankoverførsel</th>
+                        </thead>
+                        <tbody id="usersTableBody">
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Annoncer</h3>
+                </div>
+                <!-- Her oprettes tabellen alle annoncerne skal vises i -->
+
+                <div class="panel-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>ISBN</th>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
+                        <th>Pris</th>
+                        <th>Stand</th>
+                        <th>Reserveret</th>
+                        </thead>
+                        <tbody id="adsTableBody">
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
         </div>
-      </nav>
-
-
-      <div class="page-header">
-        <h1>Admin panel</h1>
-      </div>
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Bøger</h3>
-        </div>
-        <div class="panel-body">
-
-          <table class="table table-striped">
-            <thead>
-            <th>Titel</th>
-            <th>Forfatter</th>
-            <th>Udgave</th>
-            <th>ISBN</th>
-            <th>Slet</th>
-            </thead>
-            <tbody id="booksTableBody">
-
-            </tbody>
-          </table>
-
-          <hr>
-          <!-- Button trigger modal -->
-          <button class="btn btn-primary" id="addNewBookButton">
-            <span class="glyphicon glyphicon-plus"></span> Opret ny bog
-          </button>
-
-
-        </div>
-      </div>
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Brugere</h3>
-        </div>
-        <div class="panel-body">
-
-          <table class="table table-striped">
-            <thead>
-            <th>ID</th>
-            <th>Brugernavn</th>
-            <th>Kodeord</th>
-            <th>Email</th>
-            <th>Telefonnummer</th>
-            <th>Adresse</th>
-            <th>Mobilepay</th>
-            <th>Kontant</th>
-            <th>Bankoverførsel</th>
-            </thead>
-            <tbody id="usersTableBody">
-
-            </tbody>
-          </table>
-
-
-        </div>
-      </div>
-
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Annoncer</h3>
-          </div>
-          <div class="panel-body">
-
-            <table class="table table-striped">
-              <thead>
-              <th>ISBN</th>
-              <th>Titel</th>
-              <th>Forfatter</th>
-              <th>Udgave</th>
-              <th>Pris</th>
-              <th>Stand</th>
-              <th>Reserveret</th>
-              </thead>
-              <tbody id="adsTableBody">
-
-              </tbody>
-            </table>
-
-          </div>
-      </div>
-
     </div>
-  </div>
 </div>
 
 <footer class="footer">
-  <div class="container">
-    <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
-  </div>
+    <div class="container">
+        <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
+    </div>
 </footer>
 
 <script src="lib/js/jquery-3.1.1.js"></script>

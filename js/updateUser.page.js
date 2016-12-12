@@ -1,10 +1,17 @@
 /**
  * Created by frederikkevodder on 17/11/2016.
+ * I denne metode opdaterer brugerens sine oplysninger.
  */
 $(document).ready(function () {
 
     $("#updateUserButton").on("click", function () {
 
+        /**
+         * Her defineres checkbox for både mobilepay, cash og transfer.
+         * Som udgangspunkt er alle checkbox default = 0, hvilket betyder at brugeren ikke tilbyder det.
+         * Er checbox checked betyder det, at brugeren tilbyder det, og variablen vil dermed ændres til 1 i databasen.
+         * @type {number}
+         */
         var mobilepayIsChosen = 0;
         if ($("input[name=updatemobilepay]:checked").val()) {
             mobilepayIsChosen = 1;
@@ -19,7 +26,10 @@ $(document).ready(function () {
         }
 
 
-        //Create JSON object
+        /**
+         * Her oprettes Json objekt for den opdaterede bruger, der fanger den nye indtastede data, og gemmer det i objektet.
+         * @type {{username: (any), password: (any), email: (any), phonenumber: Number, address: (any), mobilepay: number, cash: number, transfer: number}}
+         */
         var updatedUser = {
             username: $("#updateUserUsername").val(),
             password: $("#updateUserPassword").val(),
@@ -33,14 +43,16 @@ $(document).ready(function () {
         };
 
 
-//Update user
+        /**
+         * Selve metoden, der sender dataen til serveren og gemmer det i databasen.
+         */
         SDK.User.update(updatedUser, function (err, data) {
             if (err) {
                 window.alert("Noget gik galt, prøv igen.")
 
                 throw err
                 location.reload()
-            } else{
+            } else {
                 window.location.href = "user.html";
 
             }

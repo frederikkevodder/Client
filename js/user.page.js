@@ -3,63 +3,74 @@
  */
 $(document).ready(function () {
 
-//Alle annoncer
-SDK.Ad.getAll(function (err, ads) {
-    if (err) throw err;
+    /**
+     * Metode, der henter alle annoncer ind i den tabel, der er oprettet i HTML (admin.html).
+     * Der er oprettet en knap inde i tabellen, der er sat op på annoncens ID.
+     * Den række, hvis knap man trykker på, vil slette den annonce med det tilhørende ID.
+     */
+    SDK.Ad.getAll(function (err, ads) {
+        if (err) throw err;
 
-    var $adTableBody = $("#adTableBody");
-    ads.forEach(function (ad) {
+        var $adTableBody = $("#adTableBody");
+        ads.forEach(function (ad) {
 
-        $adTableBody.append(
-            "<tr>" +
-            "<td>" + ad.isbn + "</td>" +
-            "<td>" + ad.bookTitle + "</td>" +
-            "<td>" + ad.bookAuthor + "</td>" +
-            "<td>" + ad.bookEdition + "</td>" +
-            "<td>" + ad.price + "</td>" +
-            "<td>" + ad.rating + "</td>" +
-            "<td><button class='reserveAdButton' data-adId=" + ad.adId + ">Reserver</button></td>"+
-            "</tr>");
+            $adTableBody.append(
+                "<tr>" +
+                "<td>" + ad.isbn + "</td>" +
+                "<td>" + ad.bookTitle + "</td>" +
+                "<td>" + ad.bookAuthor + "</td>" +
+                "<td>" + ad.bookEdition + "</td>" +
+                "<td>" + ad.price + "</td>" +
+                "<td>" + ad.rating + "</td>" +
+                "<td><button class='reserveAdButton' data-adId=" + ad.adId + ">Reserver</button></td>" +
+                "</tr>");
+        });
+
+        /**
+         * Brugeren reserverer en annonce med denne metode, når der trykkes på knappen
+         */
+
+        $(".reserveAdButton").on("click", function () {
+            if (confirm("Er du sikker på, at du vil reservere denne bog?") == true) {
+                var $reserveAdButton = $(this);
+
+                var adId = {
+                    id: $reserveAdButton.data("adid")
+                };
+
+                /**
+                 * Her sendes dataen til databasen.
+                 */
+                SDK.Ad.reserve(adId, function (err, data) {
+                    if (err) throw err;
+                    location.reload();
+
+                });
+            }
+
+        });
     });
 
     /**
-     * reserve ad
+     * Metode, der udskriver alle de annoncer, der er tilknyttet, den bruger, der er logget ind.
      */
-
-    $(".reserveAdButton").on("click", function(){
-        if (confirm("Er du sikker på, at du vil reservere denne bog?") == true) {
-        var $reserveAdButton = $(this);
-
-        var adId = {
-            id : $reserveAdButton.data("adid")
-        };
-
-        //Reserve book
-        SDK.Ad.reserve(adId, function (err, data) {
-            if (err) throw err;
-            location.reload();
-
-        });
-        }
-
-    });
-});
-
-    //Mine annoncer
     SDK.Ad.getMyAds(function (err, ads) {
         if (err) throw err;
 
         var $myAdsTableBody = $("#myAdsTableBody");
         ads.forEach(function (ad) {
 
-            function locked(){
-                if(ad.locked==1){
+            function locked() {
+                if (ad.locked == 1) {
                     return "Ja"
-                } else{
+                } else {
                     return "Nej"
                 }
             }
 
+            /**
+             * De atributter fra databasen, der skal hentes og vises i tabellen, herunder er der også oprettet to knapper.
+             */
             $myAdsTableBody.append(
                 "<tr>" +
                 "<td>" + ad.adId + "</td>" +
@@ -67,14 +78,17 @@ SDK.Ad.getAll(function (err, ads) {
                 "<td>" + ad.price + "</td>" +
                 "<td>" + ad.rating + "</td>" +
                 "<td>" + ad.comment + "</td>" +
-                "<td>" + locked() +"</td>" +
-                "<td><button class='unlockAdButton' data-adId=" + ad.adId + ">Lås op</button></td>"+
-                "<td><button class='deleteAdButton' data-adId=" + ad.adId + ">Slet</button></td>"+
+                "<td>" + locked() + "</td>" +
+                "<td><button class='unlockAdButton' data-adId=" + ad.adId + ">Lås op</button></td>" +
+                "<td><button class='deleteAdButton' data-adId=" + ad.adId + ">Slet</button></td>" +
 
                 "</tr>");
         });
 
-        $(".unlockAdButton").on("click", function(){
+        /**
+         * Når der trykkes på denne knap, blive annoncen aktiv igen, og kan reserveres på ny.
+         */
+        $(".unlockAdButton").on("click", function () {
 
             if (confirm("Er du sikker på, at du vil gøre annoncen aktiv igen?") == true) {
 
@@ -85,7 +99,6 @@ SDK.Ad.getAll(function (err, ads) {
                     id: unlockAdButton.data("adid")
                 };
 
-                //Delete book
                 SDK.Ad.unlockAd(adId, function (err, data) {
                     if (err) throw err;
                     location.reload();
@@ -94,6 +107,9 @@ SDK.Ad.getAll(function (err, ads) {
             }
         });
 
+        /**
+         * Når der trykkes på denne knap, blive annoncen slettet fra databasen.
+         */
         $(".deleteAdButton").on("click", function () {
 
             if (confirm("Er du sikker på, at du vil slette denne annonce?") == true) {
@@ -101,7 +117,7 @@ SDK.Ad.getAll(function (err, ads) {
                 var $deleteAdButton = $(this);
 
                 var adId = {
-                    id :$deleteAdButton.data("adid")
+                    id: $deleteAdButton.data("adid")
                 };
                 //Delete user
 
@@ -112,21 +128,27 @@ SDK.Ad.getAll(function (err, ads) {
             }
 
         });
-        });
+    });
 
 
     /**
-     * Add a new ad
+     * Opretter en ny annonce.
      */
     $("#addNewAdButton").on("click", function () {
 
-        //Show modal
+        /**
+         * Opretter et modal, der kommer frem, når man trykker på knappen "opret annonce".
+         * I denne modal udfylder man info om annoncen.
+         */
         $('#newAdModal').modal('show');
 
 
         $("#createAdButton").on("click", function () {
 
-            //Create JSON object
+            /**
+             * Opretter her Json objekt for annoncen.
+             * @type {{isbn: Number, price: Number, rating: Number, comment: (any)}}
+             */
             var ad = {
                 isbn: parseInt($("#bookIsbn").val()),
                 price: parseInt($("#newAdPrice").val()),
@@ -136,7 +158,10 @@ SDK.Ad.getAll(function (err, ads) {
             };
 
 
-            //Create ad
+            /**
+             * Selve metoden, der opretter annoncen og sender dataen til databasen.
+             * Lykkes det lukker modal efterfølgende.
+             */
             SDK.Ad.create(ad, function (err, data) {
 
                 if (err) {
@@ -149,57 +174,69 @@ SDK.Ad.getAll(function (err, ads) {
             });
 
         });
+    });
+
+
+    /**
+     * Metode, der udskriver alle de annoncer, brugeren, der er logget ind, har reserveret, den bruger, der er logget ind, har reserveret.
+     */
+    SDK.Ad.myReservations(function (err, ads) {
+        if (err) throw err;
+
+        var $myReservationsTableBody = $("#myReservationsTableBody");
+        ads.forEach(function (ad) {
+
+            $myReservationsTableBody.append(
+                "<tr>" +
+                "<td>" + ad.adId + "</td>" +
+                "<td>" + ad.timestamp + "</td>" +
+                "<td>" + ad.bookIsbn + "</td>" +
+                "<td>" + ad.userUsername + "</td>" +
+                "<td>" + ad.userPhonenumber + "</td>" +
+                "<td><button class='deleteReservationButton' data-adId=" + ad.adId + ">Fjern reservation</button></td>" +
+
+                "</tr>");
         });
 
+        /**
+         * Sletter reservation
+         */
+        $(".deleteReservationButton").on("click", function () {
+            if (confirm("Er du sikker på, at du vil fjerne din reservervation?") == true) {
 
-        //Mine reservationer
-        SDK.Ad.myReservations(function (err, ads) {
-            if (err) throw err;
-
-            var $myReservationsTableBody = $("#myReservationsTableBody");
-            ads.forEach(function (ad) {
-
-                $myReservationsTableBody.append(
-                    "<tr>" +
-                    "<td>" + ad.adId + "</td>" +
-                    "<td>" + ad.timestamp + "</td>" +
-                    "<td>" + ad.bookIsbn + "</td>" +
-                    "<td>" + ad.userUsername + "</td>" +
-                    "<td>" + ad.userPhonenumber + "</td>" +
-                    "<td><button class='deleteReservationButton' data-adId=" + ad.adId + ">Fjern reservation</button></td>"+
-
-                    "</tr>");
-            });
-
-            /**
-             * delete reservation
-             */
-
-            $(".deleteReservationButton").on("click", function(){
-                if (confirm("Er du sikker på, at du vil fjerne din reservervation?") == true) {
-
-                    var deleteReservationButton = $(this);
+                var deleteReservationButton = $(this);
 
 
-                    var adId = {
-                        id: deleteReservationButton.data("adid")
-                    };
+                var adId = {
+                    id: deleteReservationButton.data("adid")
+                };
 
-                    //Delete book
-                    SDK.Ad.deleteReservation(adId, function (err, data) {
-                        if (err) throw err;
-                        location.reload();
+                SDK.Ad.deleteReservation(adId, function (err, data) {
+                    if (err) throw err;
+                    location.reload();
 
-                    });
-                }
-            });
-            });
-
+                });
+            }
+        });
+    });
 
 
-            $("#logOutLink").on("click", function(){
-        SDK.logOut();
-        window.location.href = "index.html";
+    /**
+     * Logud metode, der sender brugeren til startsiden.
+     */
+    $("#logOutLink").on("click", function () {
+
+        SDK.logout(function (err) {
+
+            if (err) {
+                window.alert("Noget gik galt, prøv igen.")
+                throw err
+            } else {
+                window.location.href = "index.html";
+
+            }
+        });
+
     });
 });
 
