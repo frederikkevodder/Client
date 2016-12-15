@@ -43,6 +43,7 @@ $(document).ready(function () {
      * Henter alle bøger og gør det samme som ovenstående.
      * I denne metode er der dog oprettet en knap inde i tabellen også. Knappen er sat op på bogens ISBN nummer.
      * Den række, hvis knap man trykker på, vil slette den bog med det tilhørende ISBN nummer.
+     * Til knap i tabeller: http://stackoverflow.com/questions/23434246/easiest-way-to-add-a-button-on-each-row-of-a-table-html
      */
     SDK.Book.getAll(function (err, books) {
         if (err) throw err;
@@ -207,18 +208,13 @@ $(document).ready(function () {
      */
     $("#logOutLink").on("click", function () {
 
-        SDK.logout(function (err) {
+        SDK.logOut();
 
-        if (err) {
-            window.alert("Noget gik galt, prøv igen.")
-            throw err
-        } else {
             window.location.href = "index.html";
 
-        }
+
     });
 
-});
 });
 
 

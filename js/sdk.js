@@ -83,17 +83,10 @@ var SDK = {
         },
     },
 
-    logout: function (cb) {
+    logOut: function (cb) {
         SDK.request({method: "GET", url: "/logout"}, cb);
-
     },
 
-  /*  logOut: function () {
-        SDK.Storage.remove("sessionId");
-        SDK.Storage.remove("userId");
-        SDK.Storage.remove("type");
-    },
-*/
     login: function (username, password, cb) {
         this.request({
             data: {
@@ -107,32 +100,10 @@ var SDK = {
             //On login-error
             if (err) return cb(err);
 
-            SDK.Storage.persist("sessionId", data.sessionId);
-            SDK.Storage.persist("userId", data.userId);
-            SDK.Storage.persist("type", data.user);
-
             cb(null, data);
 
         });
     },
 
-    Storage: {
-        prefix: "BookStoreSDK",
-        persist: function (key, value) {
-            window.localStorage.setItem(this.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
-        },
-        load: function (key) {
-            var val = window.localStorage.getItem(this.prefix + key);
-            try {
-                return JSON.parse(val);
-            }
-            catch (e) {
-                return val;
-            }
-        },
-        remove: function (key) {
-            window.localStorage.removeItem(this.prefix + key);
-        }
-    }
 
 };

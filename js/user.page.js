@@ -226,17 +226,11 @@ $(document).ready(function () {
      */
     $("#logOutLink").on("click", function () {
 
-        SDK.logout(function (err) {
+            SDK.logOut();
 
-            if (err) {
-                window.alert("Noget gik galt, prøv igen.")
-                throw err
-            } else {
-                window.location.href = "index.html";
+            window.location.href = "index.html";
 
-            }
+
         });
-
-    });
 });
 

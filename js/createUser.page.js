@@ -26,8 +26,8 @@ $(document).ready(function () {
         }
         var transferIsChosen = 0;
         if ($("input[name=transfer]:checked").val()) {
-            transferIsChosen = 1;
-        }
+                transferIsChosen = 1;
+            }
 
 
         /**
